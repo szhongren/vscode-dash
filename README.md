@@ -14,10 +14,15 @@ Also support [Zeal](https://zealdocs.org/) for Windows and Linux.
 Type `cmd + shift + p` to launch command palette and choose `Extensions: Install Extension`. Search this package and install.
 
 ## Usage
-Get the text under your cursor or selected first.
+Get the text under your cursor or selected first:
 
 - Pressing `ctrl + h`. It will search for current specific documentation depends on language.
 - Pressing `ctrl + alt + h`. It will search for all documentation.
+
+No need to select the text:
+
+- Pressing `ctrl + shift + h`. It will open dash with current file's docset.
+- Pressing `alt + h`. It will open dash with custom string and current file's docset.
 
 ## Supported Docsets
 This plugin supports almost all docset configuration based on [Dash Mapping](https://kapeli.com/dash_plugins)
@@ -40,11 +45,13 @@ Elixir | elixir | dash.docset.elixir | [link](https://marketplace.visualstudio.c
 Erlang | erlang | dash.docset.erlang
 Go | go,godoc | dash.docset.go | [link](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
 Haskell | haskell | dash.docset.haskell
+Haml | haml | dash.docset.haml | [link](https://marketplace.visualstudio.com/items?itemName=karunamurti.haml)
 Haxe | haxe | dash.docset.haxe | [link](https://marketplace.visualstudio.com/items?itemName=nadako.vshaxe)
 HTML | html,svg,css,bootstrap,foundation,<br>awesome,statamic,javascript,jquery,jqueryui,<br>jquerym,angularjs,backbone,marionette,<br>meteor,moo,prototype,ember,lodash,<br>underscore,sencha,extjs,knockout,<br>zepto,cordova,phonegap,yui | dash.docset.html
 Jade | jade | dash.docset.jade
 Java | java,javafx,grails,groovy,playjava,spring,<br>cvj,processing | dash.docset.java | [link](https://marketplace.visualstudio.com/items?itemName=redhat.java)
 JavaScript | javascript,jquery,jqueryui,jquerym,react,<br>angularjs,backbone,marionette,meteor,<br>sproutcore,moo,prototype,bootstrap,<br>foundation,lodash,underscore,ember,<br>sencha,extjs,titanium,knockout,zepto,<br>yui,d3,svg,dojo,coffee,nodejs,express,<br>grunt,mongoose,moment,require,<br>awsjs,jasmine,sails,sinon,chai,<br>html,css,cordova,phonegap,unity3d | dash.docset.javascript
+Julia | julia | dash.docset.julia | [link](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia)
 Less | less | dash.docset.less
 Lua | lua,corona | dash.docset.lua | [link](https://marketplace.visualstudio.com/items?itemName=gccfeli.vscode-lua)
 Markdown | markdown | dash.docset.markdown
@@ -105,10 +112,18 @@ Choose in top menu `Code -> Preferences -> Keyboard Shortcuts` or using shortcut
 
 Add one or two lines below
 ```json
-{ "key": "your_shortcut", "command": "extension.dash.specific" }, // search in specific docset
+{ "key": "your_shortcut", "command": "extension.dash.specific" }, // search selection in corresponding docset
 { "key": "your_shortcut", "command": "extension.dash.all" } // search in all docset
+{ "key": "your_shortcut", "command": "extension.dash.emptySyntax" } // open dash with current file's docset open
+{ "key": "your_shortcut", "command": "extension.dash.searchSyntax" } // open dash with custom string and current file's docset
 ```
 
+## Contributors
+Thank you for these awesome contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars.githubusercontent.com/u/1243921?v=3" width="100px;"/><br /><sub>Budi Irawan</sub>](https://budiirawan.com) | [<img src="https://avatars.githubusercontent.com/u/8567599?v=3" width="100px;"/><br /><sub>Zhongren Shao</sub>](https://github.com/szhongren) | [<img src="https://avatars.githubusercontent.com/u/6226408?v=3" width="100px;"/><br /><sub>Logan Saso</sub>](https://github.com/HazardDev) | [<img src="https://avatars2.githubusercontent.com/u/5329046?v=4" width="100px;"/><br /><sub>Weifding</sub>](https://github.com/weifding)
+| :---:         |     :---:      |    :---:    |          :---: |
 
 ## License
-MIT
+MIT © [Budi Irawan](https://budiirawan.com)

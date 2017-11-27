@@ -2,7 +2,7 @@
   "name": "vscode-dash",
   "displayName": "Dash",
   "description": "Dash and Zeal integration in Visual Studio Code",
-  "version": "1.5.0",
+  "version": "1.7.1",
   "publisher": "deerawan",
   "icon": "images/dash.png",
   "galleryBanner": {
@@ -25,19 +25,29 @@
     "Other"
   ],
   "activationEvents": [
+    "onCommand:extension.dash.all",
     "onCommand:extension.dash.specific",
-    "onCommand:extension.dash.all"
+    "onCommand:extension.dash.customSyntax",
+    "onCommand:extension.dash.emptySyntax"
   ],
   "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {
         "command": "extension.dash.specific",
-        "title": "Search in Dash for current syntax"
+        "title": "Search in Dash for current selection"
       },
       {
         "command": "extension.dash.all",
         "title": "Search in Dash for all documentation"
+      },
+      {
+        "command": "extension.dash.emptySyntax",
+        "title": "Open Dash for current language documentation"
+      },
+      {
+        "command": "extension.dash.customSyntax",
+        "title": "Search in Dash for a custom string"
       }
     ],
     "keybindings": [
@@ -51,6 +61,18 @@
         "command": "extension.dash.all",
         "key": "ctrl+alt+h",
         "mac": "ctrl+alt+h",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.dash.emptySyntax",
+        "key": "ctrl+shift+h",
+        "mac": "ctrl+shift+h",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.dash.customSyntax",
+        "key": "alt+h",
+        "mac": "alt+h",
         "when": "editorTextFocus"
       }
     ],
@@ -175,6 +197,15 @@
             "haskell"
           ]
         },
+        "dash.docset.haml": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "haml"
+          ]
+        },
         "dash.docset.html": {
           "type": "array",
           "items": {
@@ -293,6 +324,15 @@
           },
           "default": [
             "react"
+          ]
+        },
+        "dash.docset.julia": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "julia"
           ]
         },
         "dash.docset.less": {
@@ -566,13 +606,31 @@
     "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
     "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/extension.test.js",
-    "test-local": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/extension.test.js"
+    "test-local": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/extension.test.js",
+    "precommit": "lint-staged",
+    "format": "prettier --write \"{src,test}/**/*.ts\"",
+    "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts' --fix"
   },
   "devDependencies": {
     "coveralls": "^2.11.4",
+    "husky": "^0.14.3",
     "istanbul": "^0.4.1",
+    "lint-staged": "^4.3.0",
     "mocha": "^2.3.4",
-    "typescript": "^1.6.2",
+    "prettier": "^1.7.4",
+    "tslint": "^5.7.0",
+    "tslint-config-prettier": "^1.6.0",
+    "typescript": "^2.5.3",
     "vscode": "0.10.x"
+  },
+  "lint-staged": {
+    "*.{ts,json}": [
+      "prettier",
+      "git add"
+    ],
+    "*.ts": [
+      "tslint --fix",
+      "tslint"
+    ]
   }
 }
